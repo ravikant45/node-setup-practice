@@ -1,0 +1,25 @@
+{
+  "name": "setup-practice",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "dist": "npx tsc",
+    "dev": "nodemon src/server.ts",
+    "start": "node server.js",
+    "prepare": "husky"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
+    "@types/node": "^22.15.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  }
+}
