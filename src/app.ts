@@ -1,10 +1,18 @@
-import express, { Application, Request, Response } from 'express';
-import httpResponse from './util/httpResponse';
+import express, { Application, NextFunction, Request, Response } from 'express';
+import globalErrorHandler from './middleware/globalErrorHandler';
+import responseMessage from './constants/responseMessage';
+import httpError from './util/httpError';
+import apiRouter from './router/apiRouter';
 
 const app: Application = express();
+app.use('/api/v1/', apiRouter);
 
-app.use('/api/v1/', (req: Request, res: Response) => {
-    httpResponse(req, res, 200, 'API is running successfully', {});
+// 404 Handler
+app.use((req: Request, _: Response, next: NextFunction) => {
+    const error = new Error(responseMessage.NOT_FOUND('route'));
+    httpError(next, error, req, 404);
 });
+
+app.use(globalErrorHandler);
 
 export { app };
